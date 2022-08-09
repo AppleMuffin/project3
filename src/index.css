@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Ovo&family=Tiro+Devanagari+Hindi&display=swap');
+
+/* google fonts */
+
+/* base styles start */
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,3 +26,100 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* header styles */
+header {
+  background-color: #d9ed92;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+header .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+h1, h2 {
+  font-family: 'Ovo', serif;
+  color: #168aad;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size:  1.8rem;
+  font-family: 'Nanum Gothic', sans-serif;
+  padding: 0px 0 20px 0;
+}
+
+p {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.title {
+  position: relative;
+  z-index: 0;
+}
+
+.leaf {
+  position: absolute;
+  top: -125px;
+  left: 200px;
+  color: #76c893;
+  font-size: 350px;
+  transform: rotate(50deg);
+  z-index: -10;
+}
+
+.instructions {
+  margin-top: 100px;
+  z-index: 10;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  border-radius: 8px;
+  background-color: rgba(48, 45, 45, 0.37);
+}
+
+.instructions p {
+  text-align: left;
+  padding: 10px 20px;
+}
+
+/* header styles end */
+
+/* form styles */
+.formEntry {
+  height: 20vh;
+  background-color: #76c893;
+
+}
+
+.wasteInformation {
+  display: flex;
+  justify-content: center;
+  
+}
+.wasteData {
+  display: flex;
+  justify-content: space-around;
+}
+.userInput {
+  display: flex;
+  flex-direction: column;
+}
+/* form styles end */
