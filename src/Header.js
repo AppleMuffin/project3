@@ -10,10 +10,6 @@ function Header () {
                     <h2>Track Your Waste Habits</h2>
                     <FontAwesomeIcon className="leaf" icon={faLeaf} />
                 </div>
-                <div className="instructions">
-                    <h3>Instructions</h3>
-                    <p>Enter your waste data and chart your waste habits. Use this to reduce your waste generation!</p>
-                </div>
             </div>
         </header>
     )
