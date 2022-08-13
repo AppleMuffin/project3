@@ -1,9 +1,5 @@
 function Form (props) {
 
-console.log(props)
-
-
-
     return (
         <section className="formEntry">
             <div className="wrapper">
