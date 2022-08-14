@@ -6,28 +6,52 @@ import firebase from './firebase';
 //import components
 import Header from './Header.js';
 import Form from './Form.js';
-import Chart from './Chart';
-import Graph from './Graph.js'
+import History from './History.js';
+import Graphs from './Graphs.js'
+
+
 
 function App() {
 
 //useStates: waste data from firebase
 const [firebaseWaste, setFirebaseWaste] = useState([]);
+const [graphData, setGraphData] = useState({})
 
 //setting firebase reference points
 const database = getDatabase(firebase);
 const dbRef = ref(database);
 
-// const userDatabase = ref(dbRef, `'users`)
+//! sort waste data for chart section
+const dataSorter = (data) => {
+  const totalWeights = {};
+  totalWeights.landfill = 0;
+  totalWeights.recycling = 0;
+  totalWeights.organics = 0;
+
+  for (let dataEntry in data) {
+    if (data[dataEntry].wasteType === 'Landfill') {
+      totalWeights.landfill += data[dataEntry].wasteWeight
+    } else if (data[dataEntry].wasteType === 'Recycling') {
+      totalWeights.recycling += data[dataEntry].wasteWeight
+    } else {
+      totalWeights.organics += data[dataEntry].wasteWeight
+    }
+    setGraphData(totalWeights);
+  }
+
+}
 
 //need to add a remove function
 
-//useEffect: get the full database every time it changes
+//! useEffect: get the full database every time it changes
 useEffect(() => {
   onValue(dbRef, (response) => {
     
     const databaseWaste = response.val();
     console.log(databaseWaste)
+    //prepare data for chart section
+    dataSorter(databaseWaste)
+    //prepare data for history section
     setFirebaseWaste(databaseWaste)
     
   })
@@ -64,8 +88,8 @@ const handleWasteSubmit = (event) => {
     <div className="App">
       <Header />
       <Form handleWasteSubmit={handleWasteSubmit}/>
-      <Graph />
-      <Chart firebaseWaste={firebaseWaste} handleDelete={handleDelete}/>
+      <Graphs graphData={graphData}/>
+      <History firebaseWaste={firebaseWaste} handleDelete={handleDelete}/>
       
     </div>
   );

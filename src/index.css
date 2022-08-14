@@ -191,12 +191,23 @@ input::-webkit-inner-spin-button {
 /* form styles end */
 
 /* graph styles start */
-.graph {
+.graphs {
   background-color: #d9ed92;
+  padding-bottom: 20px;
+}
+.chartHolder{
+  display: flex;
+
+}
+.pieWrapper, .barHolder {
+  width: 50%;
 }
 
-
-
+canvas {
+  border-radius: 10px;
+  margin-bottom: 20px;
+  
+}
 
 /* graph styles end */
 
@@ -224,6 +235,7 @@ table th {
 td {
   padding: 5px 10px;
   border: 1px solid #1a759f;
+
 }
 
 .delete {

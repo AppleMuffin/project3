@@ -1,6 +1,6 @@
 
 
-function Chart ( {firebaseWaste, handleDelete} ) {
+function History ( {firebaseWaste, handleDelete} ) {
   
   //create an array and add each object representing a waste entry (plus a key)
   const wasteArray = []
@@ -61,4 +61,4 @@ function Chart ( {firebaseWaste, handleDelete} ) {
   )
 }
 
-export default Chart;
+export default History;
