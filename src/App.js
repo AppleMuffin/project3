@@ -12,7 +12,7 @@ import Graph from './Graph.js'
 function App() {
 
 //useStates: waste data from firebase
-const [firebaseWaste, setFirebaseWaste] = useState({});
+const [firebaseWaste, setFirebaseWaste] = useState([]);
 
 //setting firebase reference points
 const database = getDatabase(firebase);
@@ -22,18 +22,24 @@ const dbRef = ref(database);
 
 //need to add a remove function
 
-
 //useEffect: get the full database every time it changes
 useEffect(() => {
   onValue(dbRef, (response) => {
-    const wasteArray = [];
+    
     const databaseWaste = response.val();
-    for (let eachKey in databaseWaste) {
-      wasteArray.push(databaseWaste[eachKey])
-    }
-    setFirebaseWaste(wasteArray)
+    console.log(databaseWaste)
+    setFirebaseWaste(databaseWaste)
+    
   })
 }, [dbRef])
+
+
+//delete entry from database
+const handleDelete = (event, key) => {
+  event.preventDefault();
+  const dataReference = ref(database, `/${key}`);
+  remove(dataReference)
+}
 
 // on form submit, send data to firebase
 const handleWasteSubmit = (event) => {
@@ -46,7 +52,7 @@ const handleWasteSubmit = (event) => {
     wasteType: formInfo[1].value,
     wasteWeight: Number(formInfo[2].value)
   }
-
+  
   //push into database based on username only if the name is a string and weight is a number
 
   if (typeof wasteData.date === 'string' && typeof wasteData.wasteWeight === 'number') {
@@ -59,7 +65,7 @@ const handleWasteSubmit = (event) => {
       <Header />
       <Form handleWasteSubmit={handleWasteSubmit}/>
       <Graph />
-      <Chart firebaseWaste={firebaseWaste}/>
+      <Chart firebaseWaste={firebaseWaste} handleDelete={handleDelete}/>
       
     </div>
   );

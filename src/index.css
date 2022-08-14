@@ -59,6 +59,7 @@ h2 {
   font-size: 2.5rem;
   margin: 0;
   padding: 20px 0;
+  text-align: center;
 }
 
 h3 {
@@ -96,6 +97,10 @@ p {
   background-color: #76c893;
 }
 
+header h1, header h2 {
+  text-align: left;
+}
+
 .instructions {
   display: flex;
   flex-direction: column;
@@ -111,7 +116,6 @@ p {
   text-align: left;
   padding: 10px 20px;
 }
-
 
 form {
   margin: 20px 0;
@@ -161,7 +165,6 @@ button:active {
 .wasteInformation {
   display: flex;
   justify-content: center;
-  
 }
 
 .wasteData {
@@ -173,7 +176,6 @@ button:active {
   display: flex;
   flex-direction: column;
 }
-
 
 /* removing arrow buttons on number input */
 input[type=number] {
@@ -188,10 +190,19 @@ input::-webkit-inner-spin-button {
 
 /* form styles end */
 
+/* graph styles start */
+.graph {
+  background-color: #d9ed92;
+}
+
+
+
+
+/* graph styles end */
 
 /* chart styles start */
 .chart {
-  background-color: #d9ed92;
+  background-color: #76c893;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -202,11 +213,21 @@ input::-webkit-inner-spin-button {
   justify-content: space-around;
 }
 
+table {
+  margin-bottom: 20px;
+}
 table th {
-
+  padding: 5px 10px;
   border: 1px solid #1a759f;
 }
 
+td {
+  padding: 5px 10px;
+  border: 1px solid #1a759f;
+}
 
+.delete {
+  margin: 0;
+}
 
 /* chart styles end */
