@@ -21,8 +21,8 @@ const [graphData, setGraphData] = useState({})
 const database = getDatabase(firebase);
 const dbRef = ref(database);
 
-//! sort waste data for chart section
-const dataSorter = (data) => {
+//! sort waste data for pie chart
+const pieSorter = (data) => {
   const totalWeights = {};
   totalWeights.landfill = 0;
   totalWeights.recycling = 0;
@@ -50,7 +50,7 @@ useEffect(() => {
     const databaseWaste = response.val();
     console.log(databaseWaste)
     //prepare data for chart section
-    dataSorter(databaseWaste)
+    pieSorter(databaseWaste)
     //prepare data for history section
     setFirebaseWaste(databaseWaste)
     
@@ -88,7 +88,7 @@ const handleWasteSubmit = (event) => {
     <div className="App">
       <Header />
       <Form handleWasteSubmit={handleWasteSubmit}/>
-      <Graphs graphData={graphData}/>
+      <Graphs graphData={graphData} firebaseWaste={firebaseWaste}/>
       <History firebaseWaste={firebaseWaste} handleDelete={handleDelete}/>
       
     </div>

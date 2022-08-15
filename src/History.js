@@ -12,9 +12,7 @@ function History ( {firebaseWaste, handleDelete} ) {
     wasteArray.push(firebaseWaste[key])
   
   }
-  console.log(wasteArray)
 
-  
   return (
     //make this a a routed graph, and add a b
     <section className="chart">
