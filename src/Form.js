@@ -29,7 +29,7 @@ function Form (props) {
                         </div>
                         <div className="userInput">
                             <label htmlFor="weight">Weight (kg)</label>
-                            <input placeholder="Enter a weight" type="number"  id="weight" required></input>
+                            <input placeholder="Enter a weight" type="number"  id="weight" step=".001" required></input>
                         </div>
                     </div>
 
