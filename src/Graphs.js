@@ -1,16 +1,16 @@
 import 'chart.js/auto';
 import { Chart } from 'react-chartjs-2';
 
-const categories = {
-  landfill: new Array(12).fill(0),
-  recycling: new Array(12).fill(0),
-  organics: new Array(12).fill(0),
-}
+
 // make a select option for years and create an onchange function that takes the value and uses chart.js update to show you the database by year
 
 const Graphs = ( {graphData, firebaseWaste} ) => {
 
-
+  const categories = {
+    landfill: new Array(12).fill(0),
+    recycling: new Array(12).fill(0),
+    organics: new Array(12).fill(0),
+  }
   const barGrouper = (data) => {
   
     for (let wasteEntry in data) {
@@ -138,5 +138,9 @@ const Graphs = ( {graphData, firebaseWaste} ) => {
 
 export default Graphs;
 
-//TODO: add floats to kg input, finish GRAPH component, add Chart.js (pie chart, timeline by week/ month, bar graph), add some rotating background animations and general styling, add routing for graph and chart components
-//TODO EXTRAS: more inputs, extended categories, authentication?
+//todo: add float to input (should be quick)
+//todo responsive (should be quick)
+//todo routing (separate bar and pie chart and render them on link call, perhaps) (should be quick)
+
+//todo authentication if possible (likely take time)
+//todo pagination if possible (likely take time)
