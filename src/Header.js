@@ -1,3 +1,4 @@
+//just some fontawesome imports
 import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

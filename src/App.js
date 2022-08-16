@@ -1,27 +1,32 @@
-//imports: firebase database, firebase methods, components
 import { push, getDatabase, ref, onValue, remove } from 'firebase/database';
 import { useState, useEffect } from 'react';
 import firebase from './firebase';
-
-//import components
 import Header from './Header.js';
 import Form from './Form.js';
 import History from './History.js';
 import Graphs from './Graphs.js'
 
-
-
 function App() {
 
-//useStates: waste data from firebase
+//useStates: get firebase data
 const [firebaseWaste, setFirebaseWaste] = useState([]);
+// arranging firebase data for chart.js graphs
 const [graphData, setGraphData] = useState({})
 
-//setting firebase reference points
+
+const [categories, setCategories] = useState({
+    landfill: new Array(12).fill(0),
+    recycling: new Array(12).fill(0),
+    organics: new Array(12).fill(0),
+})
+
+
+
+// firebase references
 const database = getDatabase(firebase);
 const dbRef = ref(database);
 
-//! sort waste data for pie chart
+// preparing data for pie chart
 const pieSorter = (data) => {
   const totalWeights = {};
   totalWeights.landfill = 0;
@@ -41,14 +46,11 @@ const pieSorter = (data) => {
 
 }
 
-//need to add a remove function
-
-//! useEffect: get the full database every time it changes
+// useEffect: gets firebase data each time it changes
 useEffect(() => {
   onValue(dbRef, (response) => {
     
     const databaseWaste = response.val();
-    console.log(databaseWaste)
     //prepare data for chart section
     pieSorter(databaseWaste)
     //prepare data for history section
@@ -58,39 +60,59 @@ useEffect(() => {
 }, [dbRef])
 
 
-//delete entry from database
+//delete database entries
 const handleDelete = (event, key) => {
   event.preventDefault();
   const dataReference = ref(database, `/${key}`);
   remove(dataReference)
 }
 
-// on form submit, send data to firebase
-const handleWasteSubmit = (event) => {
-  event.preventDefault();
-  const formInfo = event.target
-  
-  //mm not happy using hard index values. should come back to this later
-  const wasteData = {
-    date: formInfo[0].value,
-    wasteType: formInfo[1].value,
-    wasteWeight: Number(formInfo[2].value)
+
+
+const barGrouper = (data) => {
+    const copy = {...categories}
+    console.log(data)
+    for (let wasteEntry in data) {
+      const entry = data[wasteEntry];
+      const dest = copy[entry.wasteType.toLowerCase()]
+      const monthEntry = new Date(entry.date).getMonth()
+      const weight = entry.wasteWeight;
+      dest[monthEntry] += weight
+
+      console.log(data[wasteEntry])
+    }
+    console.log(categories)
   }
-  
-  //push into database based on username only if the name is a string and weight is a number
 
-  if (typeof wasteData.date === 'string' && typeof wasteData.wasteWeight === 'number') {
-    push(dbRef, wasteData )
-  } 
-}
+  // send firebase data on form submit
+  const handleWasteSubmit = (event) => {
+    event.preventDefault();
+    const formInfo = event.target
+    const wasteData = {
+      date: formInfo[0].value,
+      wasteType: formInfo[1].value,
+      wasteWeight: Number(formInfo[2].value)
+    }
+    console.log(wasteData)
 
+    //simple validation check: ensure data is correct type
+    if (typeof wasteData.date === 'string' && typeof wasteData.wasteWeight === 'number') {
+      push(dbRef, wasteData)
+    }
+
+    console.log(wasteData)
+    barGrouper()
+
+  }
+
+
+//todo: if time allows, could add some routing
   return (
     <div className="App">
       <Header />
-      <Form handleWasteSubmit={handleWasteSubmit}/>
-      <Graphs graphData={graphData} firebaseWaste={firebaseWaste}/>
+      <Form handleWasteSubmit={handleWasteSubmit} barGrouper={barGrouper}/>
+      <Graphs graphData={graphData} firebaseWaste={firebaseWaste} categories={categories} setCategories={setCategories} />
       <History firebaseWaste={firebaseWaste} handleDelete={handleDelete}/>
-      
     </div>
   );
 }

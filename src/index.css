@@ -102,18 +102,18 @@ header h1, header h2 {
 }
 
 .instructions {
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
   padding: 15px;
-  width: 45%;
+  width: 50%;
   border-radius: 8px;
   background-color: rgba(48, 45, 45, 0.37);
 }
 
 .instructions p {
-  text-align: left;
   padding: 10px 20px;
 }
 
@@ -140,9 +140,6 @@ input::focus, select:focus {
   outline: none;
 }
 
-option {
-  background-color: rgba(48, 45, 45, 0.37);
-}
 
 button {
   margin-top: 25px;
@@ -175,6 +172,7 @@ button:active {
 .userInput {
   display: flex;
   flex-direction: column;
+  margin: 0 20px;
 }
 
 /* removing arrow buttons on number input */
@@ -195,24 +193,27 @@ input::-webkit-inner-spin-button {
   background-color: #d9ed92;
   padding-bottom: 20px;
 }
+
 .chartHolder{
   display: flex;
-
+  justify-content: center;
 }
-.pieWrapper, .barHolder {
+
+.pieWrapper, .barWrapper {
+  position: relative;
   width: 50%;
-}
-
-canvas {
-  border-radius: 10px;
-  margin-bottom: 20px;
   
 }
 
+/* canvas {
+  margin: 30px;
+  
+} */
+
 /* graph styles end */
 
-/* chart styles start */
-.chart {
+/* history table styles start */
+.historyTable {
   background-color: #76c893;
   text-align: center;
   display: flex;
@@ -243,3 +244,71 @@ td {
 }
 
 /* chart styles end */
+
+@media (max-width: 1000px) {
+  .chartHolder {
+    flex-direction: column;
+    align-items: center;
+  }
+  .barWrapper, .pieWrapper {
+    min-width: 500px;
+  }
+}
+
+@media (max-width: 840px) {
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header h1, header h2 {
+    text-align: center;
+  }
+
+  .leaf {
+    display: none;
+  }
+
+  .instructions {
+    font-size: 1.2rem;
+    min-width: 280px;
+    padding: 10px;
+  }
+
+}
+
+@media (max-width: 530px) {
+  .barWrapper, .pieWrapper {
+    min-width: 400px;
+  }
+  table, table button {
+    font-size: 1rem;
+  }
+
+  .wasteData {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  header h1 {
+    font-size: 3rem;
+  }
+
+  header h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+
+  .barWrapper,
+  .pieWrapper {
+    min-width: 300px;
+  }
+
+  table, table button {
+    font-size: .8rem;
+  }
+}
+
