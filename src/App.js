@@ -13,15 +13,6 @@ const [firebaseWaste, setFirebaseWaste] = useState([]);
 // arranging firebase data for chart.js graphs
 const [graphData, setGraphData] = useState({})
 
-
-const [categories, setCategories] = useState({
-    landfill: new Array(12).fill(0),
-    recycling: new Array(12).fill(0),
-    organics: new Array(12).fill(0),
-})
-
-
-
 // firebase references
 const database = getDatabase(firebase);
 const dbRef = ref(database);
@@ -67,52 +58,33 @@ const handleDelete = (event, key) => {
   remove(dataReference)
 }
 
-
-
-const barGrouper = (data) => {
-    const copy = {...categories}
-    console.log(data)
-    for (let wasteEntry in data) {
-      const entry = data[wasteEntry];
-      const dest = copy[entry.wasteType.toLowerCase()]
-      const monthEntry = new Date(entry.date).getMonth()
-      const weight = entry.wasteWeight;
-      dest[monthEntry] += weight
-
-      console.log(data[wasteEntry])
-    }
-    console.log(categories)
+// send firebase data
+const handleWasteSubmit = (event) => {
+  event.preventDefault();
+  const formInfo = event.target
+  
+  //mm not happy using hard index values. should come back to this later
+  const wasteData = {
+    date: formInfo[0].value,
+    wasteType: formInfo[1].value,
+    wasteWeight: Number(formInfo[2].value)
   }
+  console.log(wasteData)
+  
+  //push into database based on username only if the name is a string and weight is a number
 
-  // send firebase data on form submit
-  const handleWasteSubmit = (event) => {
-    event.preventDefault();
-    const formInfo = event.target
-    const wasteData = {
-      date: formInfo[0].value,
-      wasteType: formInfo[1].value,
-      wasteWeight: Number(formInfo[2].value)
-    }
-    console.log(wasteData)
+  if (typeof wasteData.date === 'string' && typeof wasteData.wasteWeight === 'number') {
+    push(dbRef, wasteData )
+  } 
+}
 
-    //simple validation check: ensure data is correct type
-    if (typeof wasteData.date === 'string' && typeof wasteData.wasteWeight === 'number') {
-      push(dbRef, wasteData)
-    }
-
-    console.log(wasteData)
-    barGrouper()
-
-  }
-
-
-//todo: if time allows, could add some routing
   return (
     <div className="App">
       <Header />
-      <Form handleWasteSubmit={handleWasteSubmit} barGrouper={barGrouper}/>
-      <Graphs graphData={graphData} firebaseWaste={firebaseWaste} categories={categories} setCategories={setCategories} />
+      <Form handleWasteSubmit={handleWasteSubmit}/>
+      <Graphs graphData={graphData} firebaseWaste={firebaseWaste}/>
       <History firebaseWaste={firebaseWaste} handleDelete={handleDelete}/>
+      
     </div>
   );
 }
