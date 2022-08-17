@@ -130,6 +130,7 @@ input, select {
   border: none;
   padding: 5px;
   border-bottom: 1px solid black;
+  text-align: center;
 }
 
 input::placeholder {
@@ -149,6 +150,7 @@ button {
   padding: 5px 10px;
   transition: 0.2s linear all;
   position: relative;
+  cursor: pointer;
 }
 
 button:hover {
@@ -227,6 +229,7 @@ input::-webkit-inner-spin-button {
 
 table {
   margin-bottom: 20px;
+
 }
 table th {
   padding: 5px 10px;
@@ -245,6 +248,24 @@ td {
 
 /* chart styles end */
 
+/* footer styles */
+footer {
+  background-color: #d9ed92;
+  font-weight: bold;
+  padding: 15px 0;;
+}
+
+footer p {
+  text-align: center;
+}
+
+footer a{
+  text-decoration: none;
+  color: darkcyan;
+}
+/* footer end */
+
+/* media styles */
 @media (max-width: 1000px) {
   .chartHolder {
     flex-direction: column;

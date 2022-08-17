@@ -5,6 +5,7 @@ import Header from './Header.js';
 import Form from './Form.js';
 import History from './History.js';
 import Graphs from './Graphs.js'
+import Footer from './Footer';
 
 function App() {
 
@@ -60,6 +61,7 @@ const handleDelete = (event, key) => {
 
 // send firebase data
 const handleWasteSubmit = (event) => {
+  
   event.preventDefault();
   const formInfo = event.target
   
@@ -84,6 +86,7 @@ const handleWasteSubmit = (event) => {
       <Form handleWasteSubmit={handleWasteSubmit}/>
       <Graphs graphData={graphData} firebaseWaste={firebaseWaste}/>
       <History firebaseWaste={firebaseWaste} handleDelete={handleDelete}/>
+      <Footer />
       
     </div>
   );

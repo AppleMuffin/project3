@@ -12,7 +12,7 @@ function History ( {firebaseWaste, handleDelete} ) {
   }
 
   return (
-    <section className="historyTable">
+    <section className="historyTable" id="table">
       <div className="wrapper">
         <h2>History</h2>
         <div className="trends">
