@@ -1,4 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Ovo&family=Tiro+Devanagari+Hindi&display=swap');
+
+/* google fonts */
+
+/* base styles start */
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  font-size: 1.3rem;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -11,3 +27,309 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* header styles */
+header {
+  background-color: #d9ed92;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+header .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+h1, h2 {
+  font-family: 'Ovo', serif;
+  color: #168aad;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin: 0;
+  padding: 20px 0;
+  text-align: center;
+}
+
+h3 {
+  font-size:  1.8rem;
+  font-family: 'Nanum Gothic', sans-serif;
+  padding: 0px 0 10px 0;
+}
+
+p {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.title {
+  position: relative;
+  z-index: 0;
+}
+
+.leaf {
+  position: absolute;
+  top: -125px;
+  left: 200px;
+  color: #76c893;
+  font-size: 350px;
+  transform: rotate(50deg);
+  z-index: -10;
+}
+
+/* header styles end */
+
+/* form styles */
+.formEntry {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  background-color: #76c893;
+}
+
+header h1, header h2 {
+  text-align: left;
+}
+
+.instructions {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 15px;
+  width: 50%;
+  border-radius: 8px;
+  background-color: rgba(48, 45, 45, 0.37);
+}
+
+.instructions p {
+  padding: 10px 20px;
+}
+
+form {
+  margin: 20px 0;
+}
+
+label {
+  margin: 5px;
+}
+input, select {
+  font-size: 1.3rem;
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+input::placeholder {
+  color: black;
+}
+
+input::focus, select:focus {
+  outline: none;
+}
+
+
+button {
+  margin-top: 25px;
+  font-size: 1.3rem;
+  border: 1px solid black;
+  background-color: transparent;
+  padding: 5px 10px;
+  transition: 0.2s linear all;
+  position: relative;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #168aad;
+}
+
+button:active {
+  top: 3px;
+}
+
+.wasteInformation {
+  display: flex;
+  justify-content: center;
+}
+
+.wasteData {
+  display: flex;
+  justify-content: space-around;
+}
+
+.userInput {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+/* removing arrow buttons on number input */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* form styles end */
+
+/* graph styles start */
+.graphs {
+  background-color: #d9ed92;
+  padding-bottom: 20px;
+}
+
+.chartHolder{
+  display: flex;
+  justify-content: center;
+}
+
+.pieWrapper, .barWrapper {
+  position: relative;
+  width: 50%;
+  
+}
+
+/* canvas {
+  margin: 30px;
+  
+} */
+
+/* graph styles end */
+
+/* history table styles start */
+.historyTable {
+  background-color: #76c893;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.trends {
+  display: flex;
+  justify-content: space-around;
+}
+
+table {
+  margin-bottom: 20px;
+
+}
+table th {
+  padding: 5px 10px;
+  border: 1px solid #1a759f;
+}
+
+td {
+  padding: 5px 10px;
+  border: 1px solid #1a759f;
+
+}
+
+.delete {
+  margin: 0;
+}
+
+/* chart styles end */
+
+/* footer styles */
+footer {
+  background-color: #d9ed92;
+  font-weight: bold;
+  padding: 15px 0;;
+}
+
+footer p {
+  text-align: center;
+}
+
+footer a{
+  text-decoration: none;
+  color: darkcyan;
+}
+/* footer end */
+
+/* media styles */
+@media (max-width: 1000px) {
+  .chartHolder {
+    flex-direction: column;
+    align-items: center;
+  }
+  .barWrapper, .pieWrapper {
+    min-width: 500px;
+  }
+}
+
+@media (max-width: 840px) {
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header h1, header h2 {
+    text-align: center;
+  }
+
+  .leaf {
+    display: none;
+  }
+
+  .instructions {
+    font-size: 1.2rem;
+    min-width: 280px;
+    padding: 10px;
+  }
+
+}
+
+@media (max-width: 530px) {
+  .barWrapper, .pieWrapper {
+    min-width: 400px;
+  }
+  table, table button {
+    font-size: 1rem;
+  }
+
+  .wasteData {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  header h1 {
+    font-size: 3rem;
+  }
+
+  header h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+
+  .barWrapper,
+  .pieWrapper {
+    min-width: 300px;
+  }
+
+  table, table button {
+    font-size: .8rem;
+  }
+}
+
